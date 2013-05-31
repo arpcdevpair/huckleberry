@@ -10,6 +10,7 @@
 
 <% @messages.each do |message| %>
   <tr>
+    <td><%= message.sender.email %></td>
     <td><%= message.text %></td>
     <td><%= link_to 'Show', message %></td>
     <td><%= link_to 'Edit', edit_message_path(message) %></td>
