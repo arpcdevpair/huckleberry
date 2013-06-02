@@ -26,6 +26,8 @@ class MessagesController < ApplicationController
   # GET /messages/new.json
   def new
     @message = Message.new
+    @users = User.all.map{|user|user.name}.to_json
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @message }
@@ -35,13 +37,16 @@ class MessagesController < ApplicationController
   # GET /messages/1/edit
   def edit
     @message = Message.find(params[:id])
+    @users = User.all.map{|user|user.name}.to_json
   end
 
   # POST /messages
   # POST /messages.json
   def create
+    @users = User.all.map{|user|user.name}.to_json
     @message = Message.new(params[:message])
     @message.sender = current_user
+    @message.recipient = User.find_by_name(params[:recipient_name])
 
     respond_to do |format|
       if @message.save
