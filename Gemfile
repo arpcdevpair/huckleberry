@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 gem 'devise'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
