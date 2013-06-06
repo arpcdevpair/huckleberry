@@ -11,15 +11,11 @@
     </div>
   <% end %>
 
-	<div class="field">
-		<%= f.label :recipient %>:
-		<%= text_field_tag :recipient_name, @message.recipient.blank? ? "" : @message.recipient.name, data: {provide: "typeahead", source: @users}, autocomplete: "off" %>
-	</div>
-
   <div class="field">
-    <%= f.label :text %><br />
-    <%= f.text_field :text %>
+    <%= f.label :text %> 
+    <%= f.text_field  :text, class: 'span10' %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
