@@ -1,23 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Sender:</b>
-  <%= @message.sender.name %>
-</p>
-<p>
-  <b>Recipient:</b>
-  <%= @message.recipient.name %>
-</p>
-
-<p>
-  <b>Text:</b>
-  <%= @message.text %>
-</p>
-
-<p>
-  <b>Created:</b>
-  <%= @message.created_at %>
-</p>
-
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<div class="row-fluid">
+  <div class="span5">
+    Sender:
+    <div class="row-fluid">
+      <div class="span1">
+        <%= image_tag "http://www.gravatar.com/avatar/#{@message.sender.gravatar_hash}.jpg?s=16&d=monsterid&r=g", alt: @message.sender.name, title: @message.sender.name %>
+      </div>
+      <div class="span4">
+        <%= @message.sender.name %>
+      </div>
+    </div>
+  </div>
+  <div class="span7">
+    Recipient:
+    <% @message.recipients.map(&:user).each do |user| %>  
+    <div class="row-fluid">
+      <div class="span1">
+        <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=16&d=monsterid&r=g", alt: user.name, title: user.name %>
+      </div>
+      <div class="span6">
+        <%=user.name%>
+      </div>
+    </div>
+    <% end %>
+  </div>    
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <%= @message.text %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <b>Created</b>
+    <%= @message.created_at.strftime '%B %-d, %Y' %>
+  </div>
+</div>
