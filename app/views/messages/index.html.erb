@@ -14,7 +14,7 @@
   <tr>
     <td><%= message.list_of_senders %></td>
     <td><%= message.list_of_recipients %></td>
-    <td><%= message.text %></td>
+    <td><%= to_html(message).html_safe %></td>
     <td><%= link_to 'Show', message %></td>
   </tr>
 <% end %>
