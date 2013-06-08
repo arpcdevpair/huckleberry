@@ -13,11 +13,16 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :initials, presence: true, uniqueness: true
+  validates :initials, presence: true, uniqueness: { case_sensitive: false }
+  #set_primary_key "initials"
 
   has_many :messages
   has_many :recipients
   has_many :senders
+  
+  def to_param
+    initials
+  end
   
   def gravatar_hash
     Digest::MD5.hexdigest(self.email)
