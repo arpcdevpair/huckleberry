@@ -42,7 +42,15 @@ class MessagesController < ApplicationController
   def create
  
     @message = Message.new(params[:message])   
-    @message.sender = current_user
+
+    pattern = /([\w\.]+)>/
+    matches = @message.text.scan(pattern).map(&:first).map(&:upcase).uniq.each do |initials|
+      user = User.find_by_initials(initials)
+      if user.present?
+        sender = Sender.new(user: user, message: @message)
+        @message.senders << sender
+      end
+    end
     
     pattern = /@([\w\.]+)/
     matches = @message.text.scan(pattern).map(&:first).map(&:upcase).uniq.each do |initials|

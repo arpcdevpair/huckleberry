@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   attr_accessible :text, :recipient, :sender
-  has_many: :senders
+  has_many :senders
   has_many :recipients
   
   def list_of_recipients

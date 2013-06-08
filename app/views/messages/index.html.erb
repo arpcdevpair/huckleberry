@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Sender</th>
-    <th>Recipient</th>
+    <th>Senders</th>
+    <th>Recipients</th>
     <th>Message</th>
     <th></th>
     <th></th>
@@ -12,12 +12,10 @@
 
 <% @messages.each do |message| %>
   <tr>
-    <td><%= message.sender.name %></td>
+    <td><%= message.list_of_senders %></td>
     <td><%= message.list_of_recipients %></td>
     <td><%= message.text %></td>
     <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
-    <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

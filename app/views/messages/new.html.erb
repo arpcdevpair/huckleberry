@@ -2,4 +2,18 @@
 
 <%= render 'form' %>
 
+<h4>Tagging Options</h4>
+<ol>
+  <li>LM&gt; - Add suffix to indicate who is sending the message</li>
+  <li>@LM - Prefix users with @ symbols to indicate who is receiving the message</li>
+  <li>:LM - Prefix users with : symbols to tag them, but not reference as sender or recipient</li>
+  <li>#redteam - use hash tag to associated the message with a subject</li>
+  <li>FB12331 - use fog bugs numbers to link to cases</li>
+</ol>
+  
+<h4>Examples</h4>
+<blockquote>LM&gt; CJ&gt; Thank you for helping out with part of that long #QA on FB13299 @PM &amp; @AF<br />
+KM&gt; @AF, Thanks for clairifying to :MK about the issue on FB32991<br />
+</blockquote>
+
 <%= link_to 'Back', messages_path %>

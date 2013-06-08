@@ -1,14 +1,16 @@
 <div class="row-fluid">
   <div class="span5">
     Sender:
+    <% @message.senders.map(&:user).each do |user| %>  
     <div class="row-fluid">
       <div class="span1">
-        <%= image_tag "http://www.gravatar.com/avatar/#{@message.sender.gravatar_hash}.jpg?s=16&d=monsterid&r=g", alt: @message.sender.name, title: @message.sender.name %>
+        <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=16&d=monsterid&r=g", alt: user.name, title: user.name %>
       </div>
-      <div class="span4">
-        <%= @message.sender.name %>
+      <div class="span6">
+        <%=user.name%>
       </div>
     </div>
+    <% end %>
   </div>
   <div class="span7">
     Recipient:
