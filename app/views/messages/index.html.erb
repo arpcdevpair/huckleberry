@@ -1,25 +1,29 @@
-<h1>Listing messages</h1>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <%= link_to 'New Message', new_message_path %>
+    </div>
+    <div class="span10">
+      <h1>Huckleberries</h1>
+      <% @messages.each do |message| %>
+      <div class="row">
+          <div class="span2">
+            <%
+            user = message.senders.map(&:user).first
+            if user %>  
+              <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=64&d=monsterid&r=g", alt: user.name, title: user.name %>
+            <%end%>
+          </div>
+        <div class="span6">
+          <%= to_html(message).html_safe %>
+        </div>
+        <div class="span2">
+          <%=message.created_at.strftime '%B %-d, %Y'%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Senders</th>
-    <th>Recipients</th>
-    <th>Message</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.list_of_senders %></td>
-    <td><%= message.list_of_recipients %></td>
-    <td><%= to_html(message).html_safe %></td>
-    <td><%= link_to 'Show', message %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Message', new_message_path %>
