@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :messages
   has_many :recipients
+  has_many :senders
   
   def gravatar_hash
     Digest::MD5.hexdigest(self.email)
