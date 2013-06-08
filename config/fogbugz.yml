@@ -1,0 +1,12 @@
+# config/fogbugz.yaml
+development: &base
+  url: "http://fogbugz.development.localhost"
+ 
+test:
+  <<: *base
+  url: "http://fogbugz.test.localhost"
+
+production:
+  <<: *base
+  url: "http://fogbugz.arpcdev.net"
+
