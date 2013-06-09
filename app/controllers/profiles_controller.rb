@@ -1,6 +1,5 @@
 class ProfilesController < ApplicationController
   def show
-    puts :initials
     @user = User.find_by_initials(params[:initials])
 
     respond_to do |format|
