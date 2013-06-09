@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :initials
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :initials, :approved
   # attr_accessible :title, :body
 
   validates :name, presence: true, uniqueness: true
@@ -19,12 +19,23 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :recipients
   has_many :senders
-  
   def to_param
     initials
   end
-  
+
   def gravatar_hash
     Digest::MD5.hexdigest(self.email)
   end
+  
+  def active_for_authentication
+    super && approved?
+  end
+  
+  def inactive_message 
+    if !approved? 
+      :not_approved 
+    else 
+      super # Use whatever other message 
+    end 
+  end  
 end
