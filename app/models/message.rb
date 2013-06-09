@@ -1,7 +1,8 @@
 class Message < ActiveRecord::Base
-  attr_accessible :text, :recipient, :sender
+  attr_accessible :text, :recipient, :sender, :channelMessages
   has_many :senders
   has_many :recipients
+  has_many :channelMessages
   
   def list_of_recipients
     recipients.map(&:user).map(&:name).join ", "

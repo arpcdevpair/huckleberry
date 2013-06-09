@@ -61,6 +61,17 @@ class MessagesController < ApplicationController
       end
     end
 
+    pattern = /#([\w\.]+)/
+    @message.text.scan(pattern).map(&:first).map(&:upcase).uniq.each do |name|
+      channel = Channel.find_by_name(name)
+      if !channel.present?
+        channel = Channel.new(name: name)
+      end
+      
+     channel_message = ChannelMessage.new(channel: channel, message: @message)
+     @message.channelMessages << channel_message     
+    end
+
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: 'Message was successfully created.' }

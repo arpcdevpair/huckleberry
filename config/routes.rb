@@ -8,4 +8,7 @@ Huckleberry::Application.routes.draw do
   controller :profiles do
     match 'profiles/:initials' => :show, :as => :user, :via => :get
   end
+  controller :channels do
+    match 'channels/:name' => :show, :as => :channel, :via => :get
+  end
 end
