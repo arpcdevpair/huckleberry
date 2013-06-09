@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.order('created_at desc').limit(10)
-
+    @channels = Channel.order('created_at desc').limit(30)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @messages }

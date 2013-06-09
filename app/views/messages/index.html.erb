@@ -1,7 +1,14 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
-      <%= link_to 'New Message', new_message_path %>
+      <h4>Channels</h4>
+      <div class="row">
+        <div class="span2">
+      <% @channels.each do |channel| %>
+            #<%= link_to channel.name.downcase, channel %>
+      <% end %>
+        </div>
+      </div>
     </div>
     <div class="span10">
       <h1>Huckleberries</h1>
