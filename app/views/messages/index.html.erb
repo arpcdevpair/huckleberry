@@ -5,7 +5,7 @@
       <div class="row">
         <div class="span2">
       <% @channels.each do |channel| %>
-            #<%= link_to channel.name.downcase, channel %>
+            #<%= link_to channel.name.downcase, channel %>&nbsp;(<%= channel.channelMessages.count %>)
       <% end %>
         </div>
       </div>
