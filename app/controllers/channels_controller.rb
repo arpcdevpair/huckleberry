@@ -1,4 +1,4 @@
-class ChannelsController < ApplicationController
+class ChannelsController < AuthenticatedController
   def show
     @channel = Channel.find_by_name(params[:name])
     @messages = @channel.channelMessages.map(&:message)

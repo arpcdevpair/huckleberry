@@ -1,4 +1,4 @@
-class ProfilesController < ApplicationController
+class ProfilesController < AuthenticatedController
   def show
     @user = User.find_by_initials(params[:initials])
 

@@ -4,7 +4,6 @@ class MessagesController < AuthenticatedController
   def index
     @message = Message.new()
     @messages = Message.order('created_at desc').limit(10)
-    @channels = Channel.order('created_at desc').limit(30)
     
     respond_to do |format|
       format.html # index.html.erb

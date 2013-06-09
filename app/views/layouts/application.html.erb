@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? yield(:title) : "Myapp" %></title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= yield(:head) %>
-</head>
-<body>
-  <header class="navbar navbar-fixed-top">
-    <nav class="navbar-inner">
-      <div class="container">
-        <%= render 'layouts/navigation' %>
-      </div>
-    </nav>
-  </header>
-  <div id="main" role="main">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-	      <%= render 'layouts/flash_notices' %>
-		  <%= yield %>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Huckleberry" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation_top' %>
         </div>
-      </div>
+      </nav>
+    </header>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <%= render 'layouts/navigation_left'%>
+        <div class="span8">
+          <div class="row">
+            <div class="span12 content">
+              <%= render 'layouts/flash_notices' %>
+              <%= yield %>
+            </div><!-- /.hero-unit-->
+          </div>
+        </div><!-- /span -->
+        <%= render 'layouts/navigation_right'%>
+      </div><!-- /.row-fluid -->
+      <hr />
       <footer>
+        This is the footer.
       </footer>
-    </div> <!--! end of .container -->
-  </div> <!--! end of #main -->
-</body>
+    </div><!-- /.container-fluid -->
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

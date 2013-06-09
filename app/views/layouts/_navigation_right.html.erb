@@ -1,0 +1,16 @@
+<div class="span2">
+  <div class="well sidebar-nav">
+
+    <% if user_signed_in? %>
+    <div class="nav nav-list">
+      <li class="nav-header">
+        Users</li>
+    </div>
+    <ul class="nav nav-pills">
+    <% @users.each do |user| %>
+          <li><%= link_to "\@#{user.initials.downcase}", user %></li>
+    <% end %>
+    </ul>
+    <% end %>
+  </div><!-- /.well -->
+</div><!-- /span -->
