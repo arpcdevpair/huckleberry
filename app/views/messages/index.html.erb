@@ -12,6 +12,13 @@
     </div>
     <div class="span10">
       <h1>Huckleberries</h1>
+      
+      <div class="row">
+      <div class="well span10">
+      <%= render 'form' %>
+      </div>
+      </div>
+      
       <% @messages.each do |message| %>
       <div class="row">
           <div class="span2">
@@ -19,7 +26,10 @@
             user = message.senders.map(&:user).first
             if user %>  
               <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=64&d=monsterid&r=g", alt: user.name, title: user.name %>
-            <%end%>
+            <%
+            else %>
+              no sender...
+           <% end %>
           </div>
         <div class="span6">
           <%= to_html(message).html_safe %>

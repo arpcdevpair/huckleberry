@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+    @message = Message.new()
     @messages = Message.order('created_at desc').limit(10)
     @channels = Channel.order('created_at desc').limit(30)
     
@@ -75,7 +76,8 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        flash[:notice] = 'Message was successfully created.'
+        format.html { redirect_to action: "index" }
         format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }
