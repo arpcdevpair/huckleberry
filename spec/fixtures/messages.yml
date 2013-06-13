@@ -1,0 +1,82 @@
+#spec/fixtures/user.yml
+# see http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+message_1_day_1: 
+  text: Message 1
+  created_at: 2000-01-01T00:01:00.00-00:00
+
+message_2_day_1: 
+  text: Message 2
+  created_at: 2000-01-01T00:02:00.00-00:00
+
+message_3_day_1: 
+  text: Message 3
+  created_at: 2000-01-01T00:03:00.00-00:00
+
+message_4_day_1: 
+  text: Message 4
+  created_at: 2000-01-01T00:04:00.00-00:00
+
+message_5_day_1: 
+  text: Message 5
+  created_at: 2000-01-01T00:05:00.00-00:00
+
+message_6_day_1: 
+  text: Message 6
+  created_at: 2000-01-01T00:06:00.00-00:00
+
+message_7_day_1: 
+  text: Message 7
+  created_at: 2000-01-01T00:07:00.00-00:00
+
+message_8_day_1: 
+  text: Message 8
+  created_at: 2000-01-01T00:08:00.00-00:00
+
+message_9_day_1: 
+  text: Message 9
+  created_at: 2000-01-01T00:09:00.00-00:00
+
+message_10_day_1: 
+  text: Message 10
+  created_at: 2000-01-01T00:10:00.00-00:00
+
+message_11_day_2: 
+  text: Message 11
+  created_at: 2000-01-02T00:01:00.00-00:00
+
+message_12_day_2: 
+  text: Message 12
+  created_at: 2000-01-02T00:02:00.00-00:00
+
+message_13_day_2: 
+  text: Message 13
+  created_at: 2000-01-02T00:03:00.00-00:00
+
+message_14_day_2: 
+  text: Message 14
+  created_at: 2000-01-02T00:04:00.00-00:00
+
+message_15_day_2: 
+  text: Message 15
+  created_at: 2000-01-02T00:05:00.00-00:00
+
+message_16_day_2: 
+  text: Message 16
+  created_at: 2000-01-02T00:06:00.00-00:00
+
+message_17_day_2: 
+  text: Message 17
+  created_at: 2000-01-02T00:07:00.00-00:00
+
+message_18_day_2: 
+  text: Message 18
+  created_at: 2000-01-02T00:08:00.00-00:00
+
+message_19_day_2: 
+  text: Message 19
+  created_at: 2000-01-02T00:09:00.00-00:00
+
+message_20_day_2: 
+  text: Message 20
+  created_at: 2000-01-02T00:10:00.00-00:00
