@@ -31,9 +31,8 @@ ActiveRecord::Schema.define(:version => 20130609074241) do
 
   create_table "messages", :force => true do |t|
     t.string   "text"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "sender_id",  :default => 0, :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "recipients", :force => true do |t|
