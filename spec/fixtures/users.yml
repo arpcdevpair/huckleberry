@@ -1,0 +1,23 @@
+#spec/fixtures/user.yml
+# see http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+approved:
+  id: 1
+  name: David Hasselhof
+  initials: JD
+  approved: true
+  email: david.hasselhof@127.0.0.1
+
+admin:
+  id: 2
+  name: Code Holiday
+  initials: CH
+  approved: true
+  email: code.holiday@127.0.0.1
+
+unapproved:
+  id: 3
+  name: Sour Strauser
+  initials: SS
+  approved: false
+  email: sour.strauser@127.0.0.1
