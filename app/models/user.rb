@@ -1,5 +1,3 @@
-require 'digest/md5'
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -21,10 +19,6 @@ class User < ActiveRecord::Base
   has_many :senders
   def to_param
     initials
-  end
-
-  def gravatar_hash
-    Digest::MD5.hexdigest(self.email)
   end
   
   def active_for_authentication
