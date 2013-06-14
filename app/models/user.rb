@@ -37,5 +37,9 @@ class User < ActiveRecord::Base
     else 
       super # Use whatever other message 
     end 
-  end  
+  end
+  
+  def online?
+    last_active_at > 10.minutes.ago
+  end
 end
