@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_activity
-    current_user.update_attribute(:last_active_at, Time.now)
+    current_user.update_attributes(last_active_at: Time.now) if current_user
   end
   
 end

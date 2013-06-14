@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :initials, :approved
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :initials, :approved, :last_active_at
   # attr_accessible :title, :body
 
   validates :name, presence: true, uniqueness: true
@@ -34,6 +34,6 @@ class User < ActiveRecord::Base
   end
   
   def online?
-    last_active_at > 10.minutes.ago
+    last_active_at > 10.minutes.ago if last_active_at
   end
 end
