@@ -44,7 +44,7 @@ class MessagesController < AuthenticatedController
     @message = Message.new(params[:message])   
 
     pattern = /([\w\.]+)>/
-    matches = @message.text.scan(pattern).map(&:first).map(&:upcase).uniq.each do |initials|
+    matches = @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |initials|
       user = User.find_by_initials(initials)
       if user.present?
         sender = Sender.new(user: user, message: @message)
@@ -53,7 +53,7 @@ class MessagesController < AuthenticatedController
     end
     
     pattern = /@([\w\.]+)/
-    matches = @message.text.scan(pattern).map(&:first).map(&:upcase).uniq.each do |initials|
+    matches = @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |initials|
       user = User.find_by_initials(initials)
       if user.present?
         recipient = Recipient.new(user: user, message: @message)
@@ -62,7 +62,7 @@ class MessagesController < AuthenticatedController
     end
 
     pattern = /#([\w\.]+)/
-    @message.text.scan(pattern).map(&:first).map(&:upcase).uniq.each do |name|
+    @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |name|
       channel = Channel.find_by_name(name)
       if !channel.present?
         channel = Channel.new(name: name)
