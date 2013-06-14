@@ -4,7 +4,7 @@
     <% @message.senders.map(&:user).each do |user| %>  
     <div class="row-fluid">
       <div class="span1">
-        <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=16&d=monsterid&r=g", alt: user.name, title: user.name %>
+        <%= image_tag gravatar_url(user, :tiny), alt: user.name, title: user.name %>
       </div>
       <div class="span6">
         <%=user.name%>
@@ -17,7 +17,7 @@
     <% @message.recipients.map(&:user).each do |user| %>  
     <div class="row-fluid">
       <div class="span1">
-        <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=16&d=monsterid&r=g", alt: user.name, title: user.name %>
+        <%= image_tag gravatar_url(user, :tiny), alt: user.name, title: user.name %>
       </div>
       <div class="span6">
         <%=user.name%>
