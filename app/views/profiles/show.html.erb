@@ -1,2 +1,7 @@
 Name: <span id=Name><%= @user.name %></span>
+
+
 <%= image_tag "http://www.gravatar.com/avatar/#{@user.gravatar_hash}.jpg?s=64&d=monsterid&r=g", id: 'gravatar' %>
+
+
+Status: <span id=online><%= @user.online? ? "Online!" : "Offline" %></span>
