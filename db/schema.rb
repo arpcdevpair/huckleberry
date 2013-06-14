@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20130614203755) do
     t.string   "name"
     t.string   "initials"
     t.boolean  "approved"
-    t.date     "last_active_at"
+    t.datetime "last_active_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
