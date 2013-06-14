@@ -1,7 +1,21 @@
-Name: <span id=Name><%= @user.name %></span>
+<span class="row-fluid">
+  <span class="span12 text-center">
+    <%= image_tag "http://www.gravatar.com/avatar/#{@user.gravatar_hash}.jpg?s=256&d=monsterid&r=g", id: 'gravatar' %>
+  </span>
+</span>
+<span class="row-fluid">
+  <span class="span12 text-center">
+    <h1>
+      <span id=Name><%= @user.name %></span>
+    </h1>
+  </span>
+</span>
+<span class="row-fluid">
+  <span class="span12 text-center">
 
-
-<%= image_tag "http://www.gravatar.com/avatar/#{@user.gravatar_hash}.jpg?s=64&d=monsterid&r=g", id: 'gravatar' %>
 
 
 Status: <span id=online><%= @user.online? ? "Online!" : "Offline" %></span>
+
+  </span>
+</span>
