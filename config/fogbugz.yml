@@ -8,5 +8,5 @@ test:
 
 production:
   <<: *base
-  url: "http://fogbugz.production.localhost"
+  url: "http://fogbugz.arpcdev.net"
 
