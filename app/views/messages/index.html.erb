@@ -11,7 +11,7 @@
             <%
             user = message.senders.map(&:user).first
             if user %>  
-              <%= image_tag "http://www.gravatar.com/avatar/#{user.gravatar_hash}.jpg?s=64&d=monsterid&r=g", alt: user.name, title: user.name %>
+              <%= image_tag gravatar_url(user, :big_icon), alt: user.name, title: user.name %>
             <%
             else %>
               no sender...

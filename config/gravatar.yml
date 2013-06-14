@@ -1,0 +1,27 @@
+# config/fogbugz.yaml
+# see http://en.gravatar.com/site/implement/images/
+
+common: &common
+  tiny: 16
+  icon: 32
+  big_icon: 64
+  image: 128
+  big_image: 256
+  show_extension: false
+  default_image: monsterid
+  force_default: false
+  rating: g
+
+development:
+  <<: *common
+  default_image: retro
+ 
+test:
+  <<: *common
+  default_image: 404
+
+production:
+  <<: *common
+  show_extension: true
+  default_image: monsterid
+  rating: g
