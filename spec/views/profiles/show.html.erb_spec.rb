@@ -15,7 +15,7 @@ describe "profiles/show" do
   
   it "has an image representing the user" do
     render
-    assert_select "img#gravatar[src=?]", "http://www.gravatar.com/avatar/my_hash.jpg?s=64&amp;d=monsterid&amp;r=g", count: 1
+    assert_select "img#gravatar", count: 1
   end
   
   describe "online" do
