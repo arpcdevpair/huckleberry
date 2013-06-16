@@ -1,18 +1,21 @@
-<tr>
-  <td>
-    <%
-       user = message.senders.map(&:user).first
-       if user %>
-        <%= image_tag gravatar_url(user, :big_icon), alt: user.name, title: user.name %>
-    <%
-       else %>
-        no sender...
+<table class="table table-striped" id="<%= table_id %>">
+    <% messages.each do |message| %>
+    <tr>
+      <td>
+        <%
+        user = message.message_senders.first
+        if user %>
+          <%= image_tag gravatar_url(user, :big_icon), alt: user.name, title: user.name %>
+        <% else %>
+          no sender...
+        <% end %>
+      </td>
+      <td>
+        <%= to_html(message).html_safe %>
+      </td>
+      <td>
+        <%=message.created_at.strftime '%B %-d, %Y'%>
+      </td>
+    </tr>
     <% end %>
-  </td>
-  <td>
-    <%= to_html(message).html_safe %>
-  </td>
-  <td>
-    <%=message.created_at.strftime '%B %-d, %Y'%>
-  </td>
-</tr>
+</table>
