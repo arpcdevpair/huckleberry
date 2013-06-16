@@ -1,15 +1,22 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the MessagesHelper. For example:
-#
-# describe MessagesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe MessagesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @user = stub_model(User, initials: 'ABC', name: 'Ann Bell-Cap')
+    @message = stub_model(Message, text: 'Hello! @ABC is my friend', message_recipients: [@user])
+  end
+
+  describe 'to_html' do
+    before do
+      @html = helper.to_html @message
+    end
+    it 'converts recipient initials to link to profile' do
+      @html.should include user_path(@user)
+    end
+
+    it 'replaces recipient name with initials' do
+      @html.should include ">#{@user.name}<"
+      @html.should_not include ">#{@user.initials}<"
+    end
+  end
 end
