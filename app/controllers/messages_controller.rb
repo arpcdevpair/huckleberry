@@ -46,19 +46,13 @@ class MessagesController < AuthenticatedController
     pattern = /([\w\.]+)>/
     matches = @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |initials|
       user = User.find_by_initials(initials)
-      if user.present?
-        sender = Sender.new(user: user, message: @message)
-        @message.senders << sender
-      end
+      @message.message_senders << user if user.present?
     end
     
     pattern = /@([\w\.]+)/
     matches = @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |initials|
       user = User.find_by_initials(initials)
-      if user.present?
-        recipient = Recipient.new(user: user, message: @message)
-        @message.recipients << recipient
-      end
+      @message.message_recipients << user if user.present?
     end
 
     pattern = /#([\w\.]+)/
