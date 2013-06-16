@@ -14,9 +14,12 @@ class User < ActiveRecord::Base
   validates :initials, presence: true, uniqueness: { case_sensitive: false }
   #set_primary_key "initials"
 
-  has_many :messages
+
   has_many :recipients
   has_many :senders
+  has_many :received_messages, through: :recipients, source: :message
+  has_many :sent_messages, through: :senders, source: :message
+
   def to_param
     initials
   end
