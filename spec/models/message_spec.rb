@@ -34,6 +34,17 @@ describe Message do
     message.errors[:message_recipients].should_not include I18n.t('errors.messages.blank')
   end
 
+  it 'must have a sender' do
+    message = Message.new
+    message.valid?
+    message.errors[:message_senders].should include I18n.t('errors.messages.blank')
+
+    message = Message.new
+    message.message_senders << @alice
+    message.valid?
+    message.errors[:message_senders].should_not include I18n.t('errors.messages.blank')
+  end
+
   describe 'text' do
     it 'recipient tags must map to users' do
       message = Message.new

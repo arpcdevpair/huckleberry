@@ -11,6 +11,7 @@ class Message < ActiveRecord::Base
   validates :text, presence: true
   validate :sender_may_not_be_recipient
   validates :message_recipients, presence: true
+  validates :message_senders, presence: true
   validate :text_recipient_tags_map
   validate :text_sender_tags_map
 
