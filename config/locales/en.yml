@@ -1,2 +1,7 @@
 en:
-  sender_as_recipient: "may not have a sender who is also a recipient"
+  errors:
+    messages:
+      model:
+        message:
+          includes_recipients: 'includes recipients'
+          missing_recipient: 'must have a recipient'

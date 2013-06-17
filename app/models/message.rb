@@ -9,9 +9,10 @@ class Message < ActiveRecord::Base
   has_many :channels, through: :channelMessages
 
   validate :sender_may_not_be_recipient
+  validates :message_recipients, :presence => true
 
   def sender_may_not_be_recipient
-    errors[:message_senders] << I18n.t('sender_as_recipient') if
+    errors[:senders] << I18n.t('errors.messages.model.message.includes_recipients') if
         ( message_recipients & message_senders ).present?
   end
 end
