@@ -79,5 +79,36 @@ describe Message do
       message.valid?
       message.errors[:text].should_not include 'abc> not mapped'
     end
+
+    it 'parses words' do
+      message = Message.new
+      message.text = 'hi> my> @name @is #slim and you are? I, just don\'t know!!'
+      message.words.should eq ['hi>', 'my>', '@name', '@is', '#slim', 'and', 'you', 'are', 'I', 'just', 'don\'t', 'know']
+    end
+
+    it 'remaining_text must parse non-tagged content' do
+      message = Message.new
+      message.text = 'hi> my> @name @is #slim'
+      message.non_tags.should eq []
+
+      message.text = 'name'
+      message.non_tags.should eq ['name']
+
+      message.text = 'hi> my> @name is #slim'
+      message.non_tags.should eq ['is']
+
+    end
+    it 'must have non-tagged content' do
+      message = Message.new
+      message.text = 'hi> my> @name @is #slim'
+      message.valid?
+      message.errors[:text].should include 'must have content other than tags'
+
+      message = Message.new
+      message.text = 'hi> my> name @is #slim'
+      message.valid?
+      message.errors[:text].should_not include 'must have content other than tags'
+    end
+
   end
 end

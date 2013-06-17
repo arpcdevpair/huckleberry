@@ -9,11 +9,17 @@ class Message < ActiveRecord::Base
   has_many :channels, through: :channelMessages
 
   validates :text, presence: true
-  validate :sender_may_not_be_recipient
   validates :message_recipients, presence: true
   validates :message_senders, presence: true
+
+  validate :sender_may_not_be_recipient
   validate :text_recipient_tags_map
   validate :text_sender_tags_map
+  validate :text_has_non_tags
+
+  def text_has_non_tags
+    errors[:text] << 'must have content other than tags' if text.present? && non_tags.blank?
+  end
 
   def sender_may_not_be_recipient
     errors[:senders] << I18n.t('errors.messages.model.message.includes_recipients') if
@@ -32,6 +38,14 @@ class Message < ActiveRecord::Base
       user = User.find_by_initials(initials)
       errors[:text] << "#{initials}> not mapped" unless user.present?
     end
+  end
+
+  def words
+    text.blank? ? [] : text.gsub(/[?,!]/, ' ').split
+  end
+
+  def non_tags
+    words.reject {|word| word =~ Regexp.union(/([\w\.]+)>/, /@([\w\.]+)/, /#([\w\.]+)/) }
   end
 
   def sender_tags
