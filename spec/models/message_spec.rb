@@ -33,4 +33,40 @@ describe Message do
     message.valid?
     message.errors[:message_recipients].should_not include I18n.t('errors.messages.blank')
   end
+
+  describe 'text' do
+    it 'recipient tags must map to users' do
+      message = Message.new
+      message.text = 'Hello @abc'
+      message.valid?
+      message.errors[:text].should include '@abc not mapped'
+
+      user = User.new(initials: 'abc', email: 'abc@127.0.0.1', password: 'abc123*(', name: 'ABC')
+      user.valid?
+      user.errors.full_messages.should eq []
+      assert user.save
+
+      message = Message.new
+      message.text = "Hello @abc"
+      message.valid?
+      message.errors[:text].should_not include '@abc not mapped'
+    end
+
+    it 'sender tags must map to users' do
+      message = Message.new
+      message.text = 'Hello abc>'
+      message.valid?
+      message.errors[:text].should include 'abc> not mapped'
+
+      user = User.new(initials: 'abc', email: 'abc@127.0.0.1', password: 'abc123*(', name: 'ABC')
+      user.valid?
+      user.errors.full_messages.should eq []
+      assert user.save
+
+      message = Message.new
+      message.text = "Hello abc>"
+      message.valid?
+      message.errors[:text].should_not include 'abc> not mapped'
+    end
+  end
 end
