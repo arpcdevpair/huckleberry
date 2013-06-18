@@ -19,5 +19,13 @@ describe ProfilesController do
 
       end
     end
+    describe 'GET index'  do
+      it 'assigns users' do
+        get :index, { }
+        assigns(:profile_users).should include users(:admin)
+        assigns(:profile_users).should include users(:approved)
+        assigns(:profile_users).should include users(:unapproved)
+      end
+    end
   end
 end
