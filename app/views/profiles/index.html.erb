@@ -1,0 +1,31 @@
+<span class="row-fluid">
+  <span class="span12 text-center">
+    <%= image_tag gravatar_url( @user, :big_image ), id: 'gravatar' %>
+  </span>
+</span>
+<span class="row-fluid">
+  <span class="span12 text-center">
+    <h1>
+      <span id="name"><%= @user.name %></span>
+    </h1>
+  </span>
+</span>
+<span class="row-fluid">
+  <span class="span12 text-center">
+
+
+
+Status: <span id=online><%= @user.online? ? "Online!" : "Offline" %></span>
+
+  </span>
+</span>
+
+<div class="page-header">
+  Received
+</div>
+<%= render partial: 'messages/table', locals: {messages: @user.received_messages, table_id: 'received_messages'}%>
+
+<div class="page-header">
+  Sent
+</div>
+<%= render partial: 'messages/table', locals: {messages: @user.sent_messages, table_id: 'sent_messages'}%>
