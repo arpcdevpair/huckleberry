@@ -3,12 +3,14 @@ Huckleberry::Application.routes.draw do
 
   root to: 'messages#index'
 
-  resources :messages, :only => [:show, :index, :create, :new ]
-  resource :profiles, :as => :user, :only => :show
+  resources :messages, only: [:show, :index, :create, :new ]
+
   controller :profiles do
-    match 'profiles/:initials' => :show, :as => :user, :via => :get
+    match 'profiles/:initials' => :show, as: :user, via: :get
+    match 'profiles' => :index, as: :user, via: :get
   end
+
   controller :channels do
-    match 'channels/:name' => :show, :as => :channel, :via => :get
+    match 'channels/:name' => :show, as: :channel, via: :get
   end
 end
