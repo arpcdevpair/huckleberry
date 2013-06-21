@@ -5,24 +5,9 @@
     </div>
     <div class="span10">
       <h1><%=@channel.name%></h1>
-      <% @messages.each do |message| %>
-      <div class="row">
-          <div class="span2">
-            <%
-            user = message.senders.map(&:user).first
-            if user %>  
-              <%= image_tag gravatar_url(user, :big_icon), alt: user.name, title: user.name %>
-            <%end%>
-          </div>
-        <div class="span6">
-          <%= to_html(message).html_safe %>
-        </div>
-        <div class="span2">
-          <%=message.created_at.strftime '%B %-d, %Y'%>
-        </div>
+
+      <%= render partial: 'messages/table', locals: {messages: @channel.messages, table_id: 'channel_messages'}%>
       </div>
-      <% end %>
-    </div>
   </div>
 </div>
 

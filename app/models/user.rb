@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :initials, :approved
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :initials, :approved, :last_active_at
   # attr_accessible :title, :body
 
   validates :name, presence: true, uniqueness: true
@@ -14,9 +14,12 @@ class User < ActiveRecord::Base
   validates :initials, presence: true, uniqueness: { case_sensitive: false }
   #set_primary_key "initials"
 
-  has_many :messages
+
   has_many :recipients
   has_many :senders
+  has_many :received_messages, through: :recipients, source: :message
+  has_many :sent_messages, through: :senders, source: :message
+
   def to_param
     initials
   end
@@ -32,4 +35,8 @@ class User < ActiveRecord::Base
       super # Use whatever other message 
     end 
   end  
+  
+  def online?
+    last_active_at > 10.minutes.ago if last_active_at
+  end
 end

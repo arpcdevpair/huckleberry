@@ -43,33 +43,23 @@ class MessagesController < AuthenticatedController
  
     @message = Message.new(params[:message])   
 
-    pattern = /([\w\.]+)>/
-    matches = @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |initials|
+    @message.sender_tags.each do |initials|
       user = User.find_by_initials(initials)
-      if user.present?
-        sender = Sender.new(user: user, message: @message)
-        @message.senders << sender
-      end
+      @message.message_senders << user if user.present?
     end
-    
-    pattern = /@([\w\.]+)/
-    matches = @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |initials|
+
+    @message.recipient_tags.each do |initials|
       user = User.find_by_initials(initials)
-      if user.present?
-        recipient = Recipient.new(user: user, message: @message)
-        @message.recipients << recipient
-      end
+      @message.message_recipients << user if user.present?
     end
 
     pattern = /#([\w\.]+)/
     @message.text.scan(pattern).map(&:first).map(&:downcase).uniq.each do |name|
       channel = Channel.find_by_name(name)
-      if !channel.present?
-        channel = Channel.new(name: name)
-      end
-      
-     channel_message = ChannelMessage.new(channel: channel, message: @message)
-     @message.channelMessages << channel_message     
+      channel = Channel.new(name: name) unless channel.present?
+
+      channel_message = ChannelMessage.new(channel: channel, message: @message)
+      @message.channelMessages << channel_message
     end
 
     respond_to do |format|

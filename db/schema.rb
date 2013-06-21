@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609074241) do
+ActiveRecord::Schema.define(:version => 20130614203755) do
 
   create_table "channel_messages", :force => true do |t|
     t.integer  "channel_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130609074241) do
     t.string   "name"
     t.string   "initials"
     t.boolean  "approved"
+    t.datetime "last_active_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

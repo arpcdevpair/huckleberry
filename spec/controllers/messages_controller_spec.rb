@@ -3,8 +3,7 @@ require 'spec_helper'
 describe MessagesController do
   include Devise::TestHelpers
 
-  let(:valid_attributes) { { "text" => "MyString" } }
-
+  let(:valid_attributes) { {"text" => "#{users(:approved).initials}> Loves @#{users(:admin).initials} and others"} }
   describe 'approved user' do
     before do
       controller.stub(:authenticate_user!).and_return true
@@ -30,37 +29,38 @@ describe MessagesController do
       end
     end
   
-    describe "GET show" do
-      it "assigns the requested message as @message" do
-        message = Message.create! valid_attributes
-        get :show, {:id => message.to_param}
+    describe 'GET show' do
+      it 'assigns the requested message as @message' do
+        message = messages(:message_1_day_1)
+        get :show, {id: message }
         assigns(:message).should eq(message)
       end
     end
   
-    describe "GET new" do
-      it "assigns a new message as @message" do
+    describe 'GET new' do
+      it 'assigns a new message as @message' do
         get :new, {}
         assigns(:message).should be_a_new(Message)
       end
     end
   
-    describe "POST create" do
+    describe 'POST create' do
       describe "with valid params" do
         it "creates a new Message" do
           expect {
-            post :create, {:message => valid_attributes}
+            post :create, {message: valid_attributes}
           }.to change(Message, :count).by(1)
         end
   
         it "assigns a newly created message as @message" do
-          post :create, {:message => valid_attributes}
+          post :create, {message: valid_attributes}
           assigns(:message).should be_a(Message)
           assigns(:message).should be_persisted
         end
   
         it "redirects to the index" do
-          post :create, {:message => valid_attributes}
+          User.find_by_initials(users(:admin).initials).initials.should eq users(:admin).initials
+          post :create, {message: valid_attributes}
           response.should redirect_to root_path
         end
       end
@@ -69,14 +69,14 @@ describe MessagesController do
         it "assigns a newly created but unsaved message as @message" do
           # Trigger the behavior that occurs when invalid params are submitted
           Message.any_instance.stub(:save).and_return(false)
-          post :create, {:message => { "text" => "invalid value" }}
+          post :create, {:message => { text: 'invalid value'}}
           assigns(:message).should be_a_new(Message)
         end
   
         it "re-renders the 'new' template" do
           # Trigger the behavior that occurs when invalid params are submitted
           Message.any_instance.stub(:save).and_return(false)
-          post :create, {:message => { "text" => "invalid value" }}
+          post :create, {:message => { text: "invalid value" }}
           response.should render_template("new")
         end
       end

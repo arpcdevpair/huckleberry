@@ -4,20 +4,23 @@
 approved:
   id: 1
   name: David Hasselhof
-  initials: JD
+  initials: xx
   approved: true
   email: david.hasselhof@127.0.0.1
+  last_active_at: 2000-01-01T00:07:00.00-00:00
 
 admin:
   id: 2
   name: Code Holiday
-  initials: CH
+  initials: yy
   approved: true
   email: code.holiday@127.0.0.1
+  last_active_at: 2000-01-01T00:07:00.00-00:00
 
 unapproved:
   id: 3
   name: Sour Strauser
-  initials: SS
+  initials: zz
   approved: false
   email: sour.strauser@127.0.0.1
+  last_active_at: 2000-01-01T00:07:00.00-00:00

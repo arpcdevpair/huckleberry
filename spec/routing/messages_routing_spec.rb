@@ -1,17 +1,15 @@
 require 'spec_helper'
 
 describe MessagesController do
-  
-  let(:valid_attributes) { { "text" => "MyString" } }
-  
+
   describe "routing" do
     it "routes to #index" do
       get("/messages").should route_to("messages#index")
     end
 
     it "routes to #show" do
-      message = Message.create! valid_attributes
-      get("/messages/1").should route_to("messages#show", id: "1")
+      message = messages(:message_1_day_1)
+      get("/messages/#{message.id}").should route_to('messages#show', id: message.id.to_s)
     end
 
     it "routes to #create" do
